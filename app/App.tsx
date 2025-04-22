@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, Text, SafeAreaView, StyleSheet } from "react-native";
 import axios from "axios";
 import { Layout } from "./layout";
+import * as DocumentPicker from "expo-document-picker";
+import { FAB } from "react-native-paper";
 
 const API_URL = "http://localhost:3001";
 
@@ -44,6 +46,39 @@ export default function App() {
     loadStats();
   }, []);
 
+const handlePickPdf = async () => {
+  const result = await DocumentPicker.getDocumentAsync({
+    type: "application/pdf",
+    copyToCacheDirectory: true,
+  });
+
+  if (result.assets && result.assets[0]) {
+    const pdf = result.assets[0];
+
+    const formData = new FormData();
+    formData.append("file", {
+      uri: pdf.uri,
+      type: "application/pdf",
+      name: pdf.name,
+    } as any);
+
+    try {
+      await axios.post(`${API_URL}/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("PDF enviado com sucesso!");
+      loadItems();
+      loadStats();
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao enviar PDF");
+    }
+  }
+};
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Layout total={stats.total} visits={stats.visits} average={stats.average} />
@@ -59,6 +94,12 @@ export default function App() {
           </View>
         )}
       />
+      <FAB
+  icon="plus"
+  style={styles.fab}
+  onPress={handlePickPdf}
+  label="Adicionar nota"
+/>
     </SafeAreaView>
   );
 }
@@ -71,5 +112,11 @@ const styles = StyleSheet.create({
     padding: 15,
     borderBottomWidth: 1,
     borderColor: "#ccc",
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });
