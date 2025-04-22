@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { View, FlatList, Text, SafeAreaView, StyleSheet } from "react-native";
 import axios from "axios";
-import { Layout } from "./layout";
 import * as DocumentPicker from "expo-document-picker";
 import { FAB } from "react-native-paper";
+import Layout from "./layout";
 
-const API_URL = "http://localhost:3001";
+const API_URL = "http://192.168.217.197:3001";
 
 type GroceryItem = {
   id: number;
@@ -30,14 +30,15 @@ export default function App() {
   const loadItems = async () => {
     if (loading) return;
     setLoading(true);
-    const res = await axios.get(`${API_URL}/items?skip=${skip}&take=20`);
+    const res = await axios.get(`${API_URL}/users/1/items`);
+    console.log(res.data)
     setItems(prev => [...prev, ...res.data]);
     setSkip(prev => prev + 20);
     setLoading(false);
   };
 
   const loadStats = async () => {
-    const res = await axios.get(`${API_URL}/stats`);
+    const res = await axios.get(`${API_URL}/users/1/stats`);
     setStats(res.data);
   };
 
@@ -46,42 +47,43 @@ export default function App() {
     loadStats();
   }, []);
 
-const handlePickPdf = async () => {
-  const result = await DocumentPicker.getDocumentAsync({
-    type: "application/pdf",
-    copyToCacheDirectory: true,
-  });
-
-  if (result.assets && result.assets[0]) {
-    const pdf = result.assets[0];
-
-    const formData = new FormData();
-    formData.append("file", {
-      uri: pdf.uri,
+  const handlePickPdf = async () => {
+    const result = await DocumentPicker.getDocumentAsync({
       type: "application/pdf",
-      name: pdf.name,
-    } as any);
+      copyToCacheDirectory: true,
+    });
 
-    try {
-      await axios.post(`${API_URL}/upload`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      alert("PDF enviado com sucesso!");
-      loadItems();
-      loadStats();
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao enviar PDF");
+    if (result.assets && result.assets[0]) {
+      const pdf = result.assets[0];
+
+      const formData = new FormData();
+      formData.append("file", {
+        uri: pdf.uri,
+        type: "application/pdf",
+        name: pdf.name,
+      } as any);
+
+      try {
+        await axios.post(`${API_URL}/upload`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        alert("PDF enviado com sucesso!");
+        loadItems();
+        loadStats();
+      } catch (err) {
+        console.error(err);
+        alert("Erro ao enviar PDF");
+      }
     }
-  }
-};
+  };
 
 
   return (
     <SafeAreaView style={styles.container}>
       <Layout total={stats.total} visits={stats.visits} average={stats.average} />
+      <Text>Minha dispensa</Text>
       <FlatList
         data={items}
         keyExtractor={(item) => item.id.toString()}
@@ -95,11 +97,11 @@ const handlePickPdf = async () => {
         )}
       />
       <FAB
-  icon="plus"
-  style={styles.fab}
-  onPress={handlePickPdf}
-  label="Adicionar nota"
-/>
+        icon="plus"
+        style={styles.fab}
+        onPress={handlePickPdf}
+        label="Adicionar nota"
+      />
     </SafeAreaView>
   );
 }

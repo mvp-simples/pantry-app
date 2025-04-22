@@ -8,7 +8,7 @@ type StatsProps = {
   average: number;
 };
 
-export const Layout: React.FC<StatsProps> = ({ total, visits, average }) => {
+const Layout: React.FC<StatsProps> = ({ total, visits, average }) => {
   return (
     <View style={styles.summary}>
       <Text>Total: R$ {total.toFixed(2)}</Text>
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
   },
 });
+
+export default Layout;
