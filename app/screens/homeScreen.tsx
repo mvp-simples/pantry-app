@@ -4,9 +4,9 @@ import * as DocumentPicker from "expo-document-picker";
 import { FAB } from "react-native-paper";
 import { GroceryItem, Stats } from "../../src/types";
 import { getItems, getStats, uploadPdf } from "../../src/services/api";
-import Layout from "@/src/components/layout";
-import ItemCard from "@/src/components/itemCard";
-import AnimatedFABSwitcher from "@/src/components/animatedFabSwitcher";
+import Layout from "@/src/components/home/layout";
+import ItemCard from "@/src/components/home/itemCard";
+import AnimatedFABSwitcher from "@/src/components/home/animatedFabSwitcher";
 
 export default function HomeScreen() {
   const [items, setItems] = useState<GroceryItem[]>([]);
