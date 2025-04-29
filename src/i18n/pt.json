@@ -1,0 +1,51 @@
+{
+  "signin": {
+    "email_label": "E-mail",
+    "email_placeholder": "Digite seu email",
+    "password_label": "Senha",
+    "password_placeholder": "Digite sua senha",
+    "password": "Senha",
+    "submit_button": "Login",
+    "already_have_account": "Não possui uma conta ainda?",
+    "signup": "Cadastrar"
+  },
+  "signup": {
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "Seu e-mail",
+    "password": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "confirmPassword": "Confirmar Senha",
+    "confirmPasswordPlaceholder": "Confirme sua senha",
+    "button": "Cadastrar",
+    "alreadyHaveAccount": "Já possui uma conta?",
+    "login": "Entrar",
+    "errors": {
+      "nameRequired": "Nome é obrigatório",
+      "emailRequired": "E-mail é obrigatório",
+      "emailInvalid": "Formato de e-mail inválido",
+      "passwordShort": "Senha deve ter no mínimo 6 caracteres",
+      "passwordMismatch": "Senhas não coincidem"
+    }
+  },
+  "dashboard": {
+    "month_summary": "Resumo do mês",
+    "income": "Rendimento",
+    "balance": "Saldo atual",
+    "expense_categories": "Categorias de despesa",
+    "saving_goal": "Meta de economia",
+    "conscious_consumption": "Consumo consciente",
+    "score": "Pontuação"
+  },
+  "categories": {
+    "food": "Alimentação",
+    "transport": "Transporte",
+    "leisure": "Lazer",
+    "health": "Saúde"
+  },
+  "goal": {
+    "buy_cellphone": "Objetivo de compra: Celular"
+  },
+  "loading": "Carregando..."
+}

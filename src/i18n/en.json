@@ -1,0 +1,51 @@
+{
+  "signin": {
+    "email_label": "Email",
+    "email_placeholder": "Enter your email",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "password": "Password",
+    "submit_button": "Login",
+    "already_have_account": "Don't have an account yet?",
+    "signup": "Sign Up"
+  },
+  "signup": {
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "Your email",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "button": "Sign Up",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Log In",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email format",
+      "passwordShort": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
+    }
+  },
+  "dashboard": {
+    "month_summary": "Month Summary",
+    "income": "Income",
+    "balance": "Current Balance",
+    "expense_categories": "Expense Categories",
+    "saving_goal": "Saving Goal",
+    "conscious_consumption": "Conscious Consumption",
+    "score": "Score"
+  },
+  "categories": {
+    "food": "Food",
+    "transport": "Transport",
+    "leisure": "Leisure",
+    "health": "Health"
+  },
+  "goal": {
+    "buy_cellphone": "Purchase Goal: Phone"
+  },
+  "loading": "Loading..."
+}
